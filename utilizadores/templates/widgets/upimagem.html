@@ -1,0 +1,42 @@
+{% load static %}
+<head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    <title>Registo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{%static 'css/registo.css' %}">
+</head>
+<div class="sm:col-span-6" x-data="{clear: false}">
+    <div class="mt-1 flex items-center" :class="clear && 'blur-sm'">
+      <span >
+           {% if widget.is_initial %}
+            <img id="imagem" class="imagemredonda mr-3" src="{{ widget.value.url }}" alt="{{ widget.value}}">
+            {% else %}
+            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            {% endif %}
+              <label for="upimagem" class="botaoimagem text-center">
+                Substituir
+                <input class="escondido" type="file" name="imagem" id="upimagem"
+         {% include "django/forms/widgets/attrs.html" %}>
+                <span id="imageName"></span>
+              </label>
+
+      </span>
+    {% if not widget.required %}
+      <div class="flex flex-row mt-2 px-2">
+       <label class="mt-0 mr-2" for="{{ widget.checkbox_id }}">
+              Remove Profile Photo
+       </label>
+       <input x-model="clear" type="checkbox"
+              name="{{ widget.checkbox_name }}"
+              id="{{ widget.checkbox_id }}"
+              {% if widget.attrs.disabled %} disabled{% endif %}>
+      </div>
+    {% endif %}
+  </div>
+</div>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+        <script src="https://kit.fontawesome.com/e7a968c482.js" crossorigin="anonymous"></script>
+        <script  src="{%static 'js/upimagem.js' %}"></script>
+

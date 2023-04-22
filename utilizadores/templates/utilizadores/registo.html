@@ -1,0 +1,97 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+        <title>Registo</title>
+    <link rel="stylesheet" href="{%static 'css/registo.css' %}">
+    </head>
+
+    <body>
+        {% include 'utilizadores/mensagens.html' %}
+        <div class="wrapper">
+            <div class="text-center mt-4 name">
+                Registamos
+            </div>
+
+
+            <form class="p-3 mt-3" method="post" action="" autocomplete="off">
+                {% csrf_token %}
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                   {% render_field uform.username type="text" name="userName" id="userName" placeholder="Nome de Utilizador" attr="autofocus" %}
+                </div>
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-envelope"></span>
+                   {% render_field uform.email id="email" name="email" type="email" placeholder="O seu mail:" %}
+                </div>
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                   {% render_field uform.password1 id="password" name="password" type="password" placeholder="Password" %}
+    				<span  class="show-pass">
+    					<i id="iconp1" class="far fa-eye-slash" ></i>
+    				</span>
+                </div>
+                <div id="popover-password">
+                    <p><span id="result"></span></p>
+                    <div class="progress">
+                        <div id="password-strength"
+                             class="progress-bar"
+                             role="progressbar"
+                             aria-valuenow="40"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style="width:0%">
+                        </div>
+                    </div>
+                    <ul class="list-unstyled ">
+                        <li class="lista">
+                            <span class="low-upper-case">
+                                <i class="fas fa-circle" aria-hidden="true"></i>
+                                &nbsp;Minúsculas &amp; Maiúsculas
+                            </span>
+                        </li>
+                        <li class="lista">
+                            <span class="one-number">
+                                <i class="fas fa-circle" aria-hidden="true"></i>
+                                &nbsp;Número (0-9)
+                            </span>
+                        </li>
+                        <li class="lista">
+                            <span class="one-special-char">
+                                <i class="fas fa-circle" aria-hidden="true"></i>
+                                &nbsp;Caracter especial (!@#$%^&*)
+                            </span>
+                        </li>
+                        <li class="lista">
+                            <span class="eight-character">
+                                <i class="fas fa-circle" aria-hidden="true"></i>
+                                &nbsp;No mínimo 8 Caracteres
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                   {% render_field uform.password2 id="password2" name="password2" type="password" placeholder="Confirme a password" attr="required" %}
+    				<span  class="show-pass">
+    					<i id="iconp2" class="far fa-eye-slash" ></i>
+    				</span>
+                </div>
+                <p class="lista" id="confirmPassword-feedback"></p>
+
+                <input class="btn mt-3" type="submit" value="Criar utilizador">
+            </form>
+            <div class="text-center fs-6">
+                <a href="#">dassse, macaco</a> ou <a href="{%url 'login'%}">login</a>
+            </div>
+        </div>
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+        <script src="https://kit.fontawesome.com/e7a968c482.js" crossorigin="anonymous"></script>
+        <script  src="{%static 'js/registo.js' %}"></script>
+    </body>
+</html>
+
+

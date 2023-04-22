@@ -1,0 +1,37 @@
+{% load static %}
+
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+<link rel="stylesheet" href="{%static 'css/registo.css' %}">
+
+
+
+    {% if messages %}
+
+        <div id="msg" class="modal wrapper bg-primary bg-gradient text-white opacity-75" tabindex="-1">
+            <div class="modal-dialog p-3 mb-2 bg-primary bg-gradient text-white">
+                <div class="modal-content ">
+                        <h5 class=" text-center mt-4 name">
+                            Mensagens:
+                        </h5>
+                    <div class="modal-body lista bg-primary bg-gradient text-white">
+                        <p>
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="modal-footer bg-primary bg-gradient text-white">
+						<button type="button" class="btn " data-dismiss="modal" onclick="toggleModal1()">Agasalhamos</button>
+					</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script  src="{%static 'js/mensagem.js' %}"></script>
+
+{% endif %}
+
